@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDISOFT AI</title>
+    <title>MEDISOFT AI - Medical Assistant</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         /* Reset and Base Styles */
@@ -12,20 +12,17 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
             background-color: #f8fafc;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         /* Header */
         .header {
             background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
@@ -33,31 +30,29 @@
             padding: 1rem 0;
             box-shadow: 0 2px 10px rgba(37, 150, 190, 0.2);
         }
-
         .header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-
         .logo {
             display: flex;
             align-items: center;
             font-size: 1.5rem;
             font-weight: bold;
         }
-
         .logo i {
             margin-right: 0.5rem;
             font-size: 1.8rem;
             color: #4ade80;
         }
-
         .nav {
             display: flex;
             gap: 1rem;
+            flex-wrap: wrap;
         }
-
         .nav-btn {
             background: rgba(255,255,255,0.1);
             border: none;
@@ -70,37 +65,30 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .nav-btn:hover {
             background: rgba(255,255,255,0.2);
             transform: translateY(-2px);
         }
-
         .nav-btn.active {
             background: rgba(255,255,255,0.3);
             box-shadow: 0 4px 15px rgba(37, 150, 190, 0.3);
         }
-
         /* Main Content */
         .main {
             padding: 2rem 0;
             min-height: calc(100vh - 80px);
         }
-
         .tab-content {
             display: none;
             animation: fadeIn 0.3s ease-in;
         }
-
         .tab-content.active {
             display: block;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         /* Chat Interface */
         .chat-container {
             background: white;
@@ -111,7 +99,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .chat-header {
             background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
             color: white;
@@ -120,13 +107,11 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .assistant-info {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-
         .assistant-avatar {
             width: 50px;
             height: 50px;
@@ -137,28 +122,23 @@
             justify-content: center;
             font-size: 1.5rem;
         }
-
         .assistant-details h3 {
             margin: 0;
             font-size: 1.2rem;
         }
-
         .status {
             font-size: 0.9rem;
             opacity: 0.8;
         }
-
         .status.online::before {
             content: "●";
             color: #4ade80;
             margin-right: 0.5rem;
         }
-
         .chat-actions {
             display: flex;
             gap: 0.5rem;
         }
-
         .btn-icon {
             background: rgba(255,255,255,0.1);
             border: none;
@@ -172,12 +152,10 @@
             align-items: center;
             justify-content: center;
         }
-
         .btn-icon:hover {
             background: rgba(255,255,255,0.2);
             transform: scale(1.1);
         }
-
         /* Chat Messages */
         .chat-messages {
             flex: 1;
@@ -185,18 +163,15 @@
             overflow-y: auto;
             background: #f8fafc;
         }
-
         .message {
             display: flex;
             margin-bottom: 1.5rem;
             animation: slideIn 0.3s ease-out;
         }
-
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(-20px); }
             to { opacity: 1; transform: translateX(0); }
         }
-
         .message-avatar {
             width: 40px;
             height: 40px;
@@ -207,65 +182,73 @@
             margin-right: 1rem;
             flex-shrink: 0;
         }
-
         .assistant-message .message-avatar {
             background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
             color: white;
         }
-
         .user-message {
             flex-direction: row-reverse;
         }
-
         .user-message .message-avatar {
             background: #e2e8f0;
             color: #64748b;
             margin-right: 0;
             margin-left: 1rem;
         }
-
         .message-content {
             flex: 1;
             max-width: 70%;
         }
-
         .user-message .message-content {
             text-align: right;
         }
-
         .message-text {
             background: white;
             padding: 1rem;
             border-radius: 15px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             margin-bottom: 0.5rem;
+            white-space: pre-wrap;
         }
-
         .user-message .message-text {
             background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
             color: white;
         }
-
         .message-time {
             font-size: 0.8rem;
             color: #64748b;
             opacity: 0.7;
         }
-
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #64748b;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
         /* Chat Input */
         .chat-input-container {
             padding: 1rem;
             background: white;
             border-top: 1px solid #e2e8f0;
         }
-
         .quick-actions {
             display: flex;
             gap: 0.5rem;
             margin-bottom: 1rem;
             flex-wrap: wrap;
         }
-
         .quick-btn {
             background: #f1f5f9;
             border: 1px solid #e2e8f0;
@@ -278,24 +261,20 @@
             gap: 0.5rem;
             font-size: 0.9rem;
         }
-
         .quick-btn:hover {
             background: #e2e8f0;
             transform: translateY(-2px);
             border-color: #2596be;
         }
-
         .quick-btn i {
             color: #2596be;
         }
-
         .input-group {
             display: flex;
             gap: 1rem;
             align-items: flex-end;
             margin-bottom: 1rem;
         }
-
         #messageInput {
             flex: 1;
             border: 2px solid #e2e8f0;
@@ -307,13 +286,11 @@
             transition: all 0.3s ease;
             max-height: 120px;
         }
-
         #messageInput:focus {
             outline: none;
             border-color: #2596be;
             box-shadow: 0 0 0 3px rgba(37, 150, 190, 0.1);
         }
-
         .send-btn {
             background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
             border: none;
@@ -327,45 +304,29 @@
             align-items: center;
             justify-content: center;
         }
-
         .send-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(37, 150, 190, 0.4);
         }
-
-        .input-actions {
-            display: flex;
-            gap: 1rem;
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
-
-        .action-btn {
-            background: none;
-            border: 1px solid #e2e8f0;
-            color: #64748b;
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        /* Symptom Form Layout */
+        .symptoms-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-
-        .action-btn:hover {
-            border-color: #2596be;
-            color: #2596be;
-        }
-
-        /* Forms */
         .form-container {
             background: white;
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 10px 30px rgba(37, 150, 190, 0.1);
-            max-width: 800px;
-            margin: 0 auto;
         }
-
         .form-container h2 {
             color: #1e293b;
             margin-bottom: 0.5rem;
@@ -373,51 +334,43 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .form-container h2 i {
             color: #2596be;
         }
-
         .form-description {
             color: #64748b;
             margin-bottom: 2rem;
         }
-
         .form-section {
             margin-bottom: 2rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid #e2e8f0;
         }
-
         .form-section:last-child {
             border-bottom: none;
             margin-bottom: 0;
             padding-bottom: 0;
         }
-
         .form-section h3 {
             color: #374151;
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
-
         .form-group {
             margin-bottom: 1.5rem;
+            position: relative;
         }
-
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: #374151;
         }
-
         input, select, textarea {
             width: 100%;
             padding: 0.75rem;
@@ -427,13 +380,293 @@
             font-size: 1rem;
             transition: all 0.3s ease;
         }
-
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #2596be;
             box-shadow: 0 0 0 3px rgba(37, 150, 190, 0.1);
         }
-
+        /* AI Disease Suggestions Panel */
+        .ai-suggestions-panel {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(37, 150, 190, 0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+        .ai-panel-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        .ai-panel-header i {
+            background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .ai-panel-title {
+            flex: 1;
+        }
+        .ai-panel-title h3 {
+            margin: 0;
+            color: #1e293b;
+            font-size: 1.1rem;
+        }
+        .ai-panel-subtitle {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+        .ai-status.analyzing {
+            color: #2596be;
+        }
+        .ai-status.idle {
+            color: #64748b;
+        }
+        .ai-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .disease-suggestions {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .disease-category {
+            margin-bottom: 1.5rem;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #374151;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .category-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+        .high-probability .category-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .moderate-probability .category-icon {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .low-probability .category-icon {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        .disease-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .disease-item:hover {
+            background: #f1f5f9;
+            border-color: #2596be;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 150, 190, 0.1);
+        }
+        .disease-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .probability-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        .high-probability .probability-badge {
+            background: #dc2626;
+            color: white;
+        }
+        .moderate-probability .probability-badge {
+            background: #d97706;
+            color: white;
+        }
+        .low-probability .probability-badge {
+            background: #2563eb;
+            color: white;
+        }
+        .disease-description {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        .matching-symptoms {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+        .symptom-tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        .no-suggestions {
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+            padding: 2rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 2px dashed #e2e8f0;
+        }
+        .no-suggestions i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+        /* Symptom Suggestions */
+        .suggestions-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .suggestion-section {
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .suggestion-header {
+            padding: 0.75rem 1rem;
+            background: #f8fafc;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .suggestion-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid #f8fafc;
+        }
+        .suggestion-item:hover {
+            background: #f8fafc;
+        }
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        .suggestion-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+        }
+        .common-suggestion .suggestion-icon {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+        .ai-suggestion .suggestion-icon {
+            background: #d1fae5;
+            color: #059669;
+        }
+        .suggestion-text {
+            flex: 1;
+        }
+        .suggestion-name {
+            font-weight: 500;
+            color: #1f2937;
+        }
+        .suggestion-description {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+        .ai-badge {
+            background: #059669;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        .loading-suggestions {
+            padding: 1rem;
+            text-align: center;
+            color: #6b7280;
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #e5e7eb;
+            border-top: 2px solid #2563eb;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         /* Range Input */
         input[type="range"] {
             -webkit-appearance: none;
@@ -442,7 +675,6 @@
             border-radius: 3px;
             outline: none;
         }
-
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 20px;
@@ -451,7 +683,6 @@
             border-radius: 50%;
             cursor: pointer;
         }
-
         .range-labels {
             display: flex;
             justify-content: space-between;
@@ -459,12 +690,10 @@
             font-size: 0.9rem;
             color: #64748b;
         }
-
         #severityValue {
             font-weight: bold;
             color: #2596be;
         }
-
         /* Checkbox Grid */
         .checkbox-grid {
             display: grid;
@@ -472,7 +701,6 @@
             gap: 1rem;
             margin-top: 0.5rem;
         }
-
         .checkbox-item {
             display: flex;
             align-items: center;
@@ -482,17 +710,14 @@
             border-radius: 8px;
             transition: background-color 0.3s ease;
         }
-
         .checkbox-item:hover {
             background-color: #f8fafc;
         }
-
         .checkbox-item input[type="checkbox"] {
             width: auto;
             margin: 0;
             accent-color: #2596be;
         }
-
         /* Buttons */
         .btn-primary, .btn-secondary, .btn-danger {
             padding: 0.75rem 2rem;
@@ -506,45 +731,37 @@
             align-items: center;
             gap: 0.5rem;
         }
-
         .btn-primary {
             background: linear-gradient(135deg, #2596be 0%, #1e7ba8 100%);
             color: white;
         }
-
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(37, 150, 190, 0.4);
         }
-
         .btn-secondary {
             background: #f1f5f9;
             color: #64748b;
             border: 1px solid #e2e8f0;
         }
-
         .btn-secondary:hover {
             background: #e2e8f0;
             color: #475569;
         }
-
         .btn-danger {
             background: #ef4444;
             color: white;
         }
-
         .btn-danger:hover {
             background: #dc2626;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
         }
-
         .full-width {
             width: 100%;
             justify-content: center;
             margin-bottom: 1rem;
         }
-
         .form-actions {
             display: flex;
             gap: 1rem;
@@ -553,7 +770,6 @@
             padding-top: 2rem;
             border-top: 1px solid #e2e8f0;
         }
-
         /* Loading Overlay */
         .loading-overlay {
             position: fixed;
@@ -567,35 +783,29 @@
             justify-content: center;
             z-index: 1000;
         }
-
         .loading-overlay.active {
             display: flex;
         }
-
-        .loading-spinner {
+        .loading-content {
             background: white;
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
-        .loading-spinner i {
+        .loading-content i {
             font-size: 3rem;
             color: #2596be;
             animation: pulse 1.5s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
-
-        .loading-spinner p {
+        .loading-content p {
             margin-top: 1rem;
             color: #64748b;
         }
-
         /* Modal */
         .modal {
             position: fixed;
@@ -609,11 +819,9 @@
             justify-content: center;
             z-index: 1001;
         }
-
         .modal.active {
             display: flex;
         }
-
         .modal-content {
             background: white;
             border-radius: 15px;
@@ -623,25 +831,21 @@
             overflow-y: auto;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
-
         .emergency-modal .modal-header {
             background: #ef4444;
             color: white;
             padding: 1.5rem;
             border-radius: 15px 15px 0 0;
         }
-
         .modal-header h2 {
             margin: 0;
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
-
         .modal-body {
             padding: 1.5rem;
         }
-
         .emergency-numbers {
             background: #fef2f2;
             border: 1px solid #fecaca;
@@ -649,12 +853,10 @@
             padding: 1rem;
             margin: 1rem 0;
         }
-
         .emergency-number {
             padding: 0.5rem 0;
             font-size: 1.1rem;
         }
-
         .modal-actions {
             padding: 1.5rem;
             display: flex;
@@ -662,19 +864,7 @@
             justify-content: flex-end;
             border-top: 1px solid #e2e8f0;
         }
-
-        /* Field Error Styles */
-        .field-error {
-            color: #ef4444;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        input.error, select.error, textarea.error {
-            border-color: #ef4444;
-        }
-
-        /* Notification Styles */
+        /* Notification */
         .notification {
             position: fixed;
             top: 20px;
@@ -689,119 +879,128 @@
             z-index: 1002;
             min-width: 300px;
             animation: slideInRight 0.3s ease-out;
+            opacity: 0;
+            transform: translateX(100%);
         }
-
-        .notification.success { 
-            border-left: 4px solid #10b981; 
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
         }
-
-        .notification.error { 
-            border-left: 4px solid #ef4444; 
+        .notification.success { border-left: 4px solid #10b981; }
+        .notification.error { border-left: 4px solid #ef4444; }
+        .notification.info { border-left: 4px solid #2596be; }
+        .notification-content {
+             display: flex;
+             align-items: center;
+             gap: 0.5rem;
+             flex: 1;
+         }
+        .notification-close {
+             background: none;
+             border: none;
+             cursor: pointer;
+             color: #64748b;
+         }
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
-
-        .notification.info { 
-            border-left: 4px solid #2596be; 
+        /* Action button styling */
+        .action-btn {
+            background: none;
+            border: 1px solid #e2e8f0;
+            color: #64748b;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
         }
-
-        .notification-content { 
-            display: flex; 
-            align-items: center; 
-            gap: 0.5rem; 
-            flex: 1; 
+        .action-btn:hover {
+            border-color: #2596be;
+            color: #2596be;
         }
-
-        .notification-close { 
-            background: none; 
-            border: none; 
-            cursor: pointer; 
-            color: #64748b; 
-        }
-
-        @keyframes slideInRight { 
-            from { transform: translateX(100%); } 
-            to { transform: translateX(0); } 
-        }
-
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .symptoms-layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .ai-suggestions-panel {
+                position: static;
+                order: -1;
+            }
+        }
         @media (max-width: 768px) {
             .header .container {
                 flex-direction: column;
                 gap: 1rem;
             }
-
             .nav {
                 width: 100%;
                 justify-content: center;
                 flex-wrap: wrap;
             }
-
             .nav-btn {
                 flex: 1;
                 min-width: 120px;
                 justify-content: center;
             }
-
             .chat-container {
                 height: 70vh;
             }
-
             .form-row {
                 grid-template-columns: 1fr;
             }
-
             .checkbox-grid {
                 grid-template-columns: 1fr;
             }
-
             .form-actions {
                 flex-direction: column;
             }
-
             .quick-actions {
                 justify-content: center;
             }
-
             .quick-btn {
                 flex: 1;
                 justify-content: center;
                 min-width: 100px;
             }
-
             .message-content {
                 max-width: 85%;
             }
-
             .modal-actions {
                 flex-direction: column;
             }
         }
-
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
             }
-
             .main {
                 padding: 1rem 0;
             }
-
             .form-container {
                 margin: 0 10px;
                 padding: 1.5rem;
             }
-
             .chat-container {
                 height: 65vh;
                 margin: 0 10px;
             }
-
             .input-group {
                 flex-direction: column;
                 gap: 0.5rem;
             }
-
             .send-btn {
                 align-self: flex-end;
+            }
+            .ai-suggestions-panel {
+                margin: 0 10px;
+                padding: 1rem;
             }
         }
     </style>
@@ -811,7 +1010,7 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-               
+                <i class="fas fa-heartbeat"></i>
                 <span>MEDISOFT AI</span>
             </div>
             <nav class="nav">
@@ -819,11 +1018,13 @@
                     <i class="fas fa-comments"></i>
                     Chat
                 </button>
-               
+                <button class="nav-btn" data-tab="symptoms">
+                    <i class="fas fa-clipboard-list"></i>
+                    Symptoms
+                </button>
             </nav>
         </div>
     </header>
-
     <main class="main">
         <div class="container">
             <!-- Chat Tab -->
@@ -836,7 +1037,7 @@
                             </div>
                             <div class="assistant-details">
                                 <h3>Dr. AI Assistant</h3>
-                              
+                                <div class="status online">Online</div>
                             </div>
                         </div>
                         <div class="chat-actions">
@@ -848,21 +1049,17 @@
                             </button>
                         </div>
                     </div>
-
                     <div class="chat-messages" id="chatMessages">
                         <div class="message assistant-message">
                             <div class="message-avatar">
                                 <i class="fas fa-robot"></i>
                             </div>
                             <div class="message-content">
-                                <div class="message-text">
-                                    Hello! I'm your AI medical assistant. I can help you with health questions, symptom analysis, and medical information. How can I assist you today?
-                                </div>
+                                <div class="message-text">Hello! I'm your AI medical assistant. I can help you with health questions, symptom analysis, and medical information. How can I assist you today?</div>
                                 <div class="message-time">Just now</div>
                             </div>
                         </div>
                     </div>
-
                     <div class="chat-input-container">
                         <div class="quick-actions">
                             <button class="quick-btn" data-message="I have a headache">
@@ -877,19 +1074,17 @@
                                 <i class="fas fa-thermometer-half"></i>
                                 Fever
                             </button>
-                            <button class="quick-btn" data-message="Emergency help needed">
+                            <button class="quick-btn" data-action="emergency">
                                 <i class="fas fa-exclamation-triangle"></i>
                                 Emergency
                             </button>
                         </div>
-
                         <div class="input-group">
                             <textarea id="messageInput" placeholder="Describe your symptoms or ask a medical question..." rows="1"></textarea>
                             <button class="send-btn" id="sendMessage">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
                         </div>
-
                         <div class="input-actions">
                             <button class="action-btn" id="voiceInput">
                                 <i class="fas fa-microphone"></i>
@@ -903,20 +1098,108 @@
                     </div>
                 </div>
             </div>
-
-           
-
-         
+            <!-- Symptoms Tab -->
+            <div class="tab-content" id="symptoms">
+                <div class="symptoms-layout">
+                    <div class="form-container">
+                        <h2>
+                            <i class="fas fa-clipboard-list"></i>
+                            Symptom Assessment
+                        </h2>
+                        <p class="form-description">
+                            Please provide detailed information about your symptoms for accurate analysis and recommendations.
+                        </p>
+                        <form id="symptomForm">
+                            <div class="form-section">
+                                <h3>Primary Symptom</h3>
+                                <div class="form-group">
+                                    <label for="primarySymptom">What is your main symptom? *</label>
+                                    <input type="text" id="primarySymptom" name="primarySymptom" placeholder="e.g., Headache, Fever, Cough..." required>
+                                    <div class="suggestions-container" id="suggestionsContainer" style="display: none;"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="symptomDescription">Detailed Description *</label>
+                                    <textarea id="symptomDescription" name="symptomDescription" rows="4" placeholder="Please describe your symptoms in detail, including when they started, what triggers them, and any patterns you've noticed..." required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <h3>Symptom Details</h3>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="severity">Severity Level: <span id="severityValue">5</span>/10</label>
+                                        <input type="range" id="severity" name="severity" min="1" max="10" value="5">
+                                        <div class="range-labels">
+                                            <span>Mild (1)</span>
+                                            <span>Moderate (5)</span>
+                                            <span>Severe (10)</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="duration">Duration</label>
+                                        <select id="duration" name="duration">
+                                            <option value="">Select duration</option>
+                                            <option value="less-than-hour">Less than 1 hour</option>
+                                            <option value="few-hours">A few hours</option>
+                                            <option value="1-day">1 day</option>
+                                            <option value="2-3-days">2-3 days</option>
+                                            <option value="1-week">About a week</option>
+                                            <option value="2-weeks">2 weeks</option>
+                                            <option value="1-month">About a month</option>
+                                            <option value="longer">Longer than a month</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <h3>Additional Symptoms</h3>
+                                <p style="color: #64748b; margin-bottom: 1rem;">Select any additional symptoms you're experiencing:</p>
+                                <div class="checkbox-grid" id="additionalSymptoms">
+                                    <!-- Symptoms will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" id="clearForm">
+                                    <i class="fas fa-trash"></i>
+                                    Clear Form
+                                </button>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-search"></i>
+                                    Analyze Symptoms
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- AI Disease Suggestions Panel -->
+                    <div class="ai-suggestions-panel">
+                        <div class="ai-panel-header">
+                            <i class="fas fa-brain"></i>
+                            <div class="ai-panel-title">
+                                <h3>AI Disease Analysis</h3>
+                                <div class="ai-panel-subtitle">Real-time condition suggestions</div>
+                            </div>
+                        </div>
+                        <div class="ai-status idle" id="aiStatus">
+                            <div class="ai-status-dot"></div>
+                            <span id="aiStatusText">Waiting for symptoms...</span>
+                        </div>
+                        <div class="disease-suggestions" id="diseaseSuggestions">
+                            <div class="no-suggestions">
+                                <i class="fas fa-stethoscope"></i>
+                                <p>Start entering your symptoms to see AI-powered disease suggestions and analysis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner">
+        <div class="loading-content">
             <i class="fas fa-spinner fa-spin"></i>
             <p>Processing your request...</p>
         </div>
     </div>
-
     <!-- Emergency Modal -->
     <div class="modal emergency-modal" id="emergencyModal">
         <div class="modal-content">
@@ -928,19 +1211,11 @@
             </div>
             <div class="modal-body">
                 <p><strong>If this is a life-threatening emergency, call 911 immediately!</strong></p>
-                
                 <div class="emergency-numbers">
-                    <div class="emergency-number">
-                        <strong>Emergency Services:</strong> 911
-                    </div>
-                    <div class="emergency-number">
-                        <strong>Poison Control:</strong> 1-800-222-1222
-                    </div>
-                    <div class="emergency-number">
-                        <strong>Crisis Text Line:</strong> Text HOME to 741741
-                    </div>
+                    <div class="emergency-number"><strong>Emergency Services:</strong> 911</div>
+                    <div class="emergency-number"><strong>Poison Control:</strong> 1-800-222-1222</div>
+                    <div class="emergency-number"><strong>Crisis Text Line:</strong> Text HOME to 741741</div>
                 </div>
-
                 <p>For non-emergency urgent care, consider visiting your nearest urgent care center or contacting your primary care physician.</p>
             </div>
             <div class="modal-actions">
@@ -955,21 +1230,219 @@
             </div>
         </div>
     </div>
-
     <script>
+        // Enhanced Medical Knowledge Base with Disease Mappings
+        const medicalKnowledgeBase = {
+            symptoms: {
+                'headache': {
+                    related: ['migraine', 'tension headache', 'cluster headache', 'sinus headache'],
+                    associated: ['nausea', 'light sensitivity', 'neck pain', 'dizziness'],
+                    conditions: ['migraine disorder', 'tension-type headache', 'sinusitis', 'hypertension']
+                },
+                'fever': {
+                    related: ['high temperature', 'pyrexia', 'hyperthermia'],
+                    associated: ['chills', 'sweating', 'fatigue', 'body aches', 'dehydration'],
+                    conditions: ['viral infection', 'bacterial infection', 'flu', 'COVID-19']
+                },
+                'cough': {
+                    related: ['dry cough', 'productive cough', 'persistent cough', 'chronic cough'],
+                    associated: ['sore throat', 'chest pain', 'shortness of breath', 'wheezing'],
+                    conditions: ['bronchitis', 'pneumonia', 'asthma', 'COPD', 'allergies']
+                },
+                'fatigue': {
+                    related: ['tiredness', 'exhaustion', 'weakness', 'lethargy'],
+                    associated: ['sleep problems', 'muscle weakness', 'difficulty concentrating', 'mood changes'],
+                    conditions: ['anemia', 'thyroid disorders', 'depression', 'chronic fatigue syndrome']
+                },
+                'nausea': {
+                    related: ['queasiness', 'stomach upset', 'morning sickness'],
+                    associated: ['vomiting', 'dizziness', 'loss of appetite', 'abdominal pain'],
+                    conditions: ['gastroenteritis', 'food poisoning', 'pregnancy', 'motion sickness']
+                },
+                'chest pain': {
+                    related: ['chest discomfort', 'chest tightness', 'chest pressure'],
+                    associated: ['shortness of breath', 'palpitations', 'sweating', 'arm pain'],
+                    conditions: ['angina', 'heart attack', 'pulmonary embolism', 'costochondritis']
+                },
+                'shortness of breath': {
+                    related: ['dyspnea', 'breathing difficulty', 'breathlessness'],
+                    associated: ['chest pain', 'wheezing', 'cough', 'fatigue'],
+                    conditions: ['asthma', 'COPD', 'heart failure', 'pulmonary embolism']
+                },
+                'abdominal pain': {
+                    related: ['stomach pain', 'belly pain', 'gut pain'],
+                    associated: ['nausea', 'vomiting', 'bloating', 'diarrhea', 'constipation'],
+                    conditions: ['gastritis', 'appendicitis', 'gallstones', 'IBS']
+                },
+                'dizziness': {
+                    related: ['vertigo', 'lightheadedness', 'unsteadiness'],
+                    associated: ['nausea', 'headache', 'balance problems', 'hearing changes'],
+                    conditions: ['inner ear problems', 'low blood pressure', 'dehydration', 'medication side effects']
+                },
+                'joint pain': {
+                    related: ['arthralgia', 'joint stiffness', 'joint swelling'],
+                    associated: ['muscle pain', 'stiffness', 'swelling', 'reduced mobility'],
+                    conditions: ['arthritis', 'rheumatoid arthritis', 'osteoarthritis', 'gout']
+                }
+            },
+            diseases: {
+                'migraine': {
+                    name: 'Migraine',
+                    description: 'A neurological condition characterized by intense, throbbing headaches often accompanied by nausea and light sensitivity.',
+                    symptoms: ['headache', 'nausea', 'light sensitivity', 'sound sensitivity', 'visual disturbances'],
+                    severity: 'moderate-high',
+                    category: 'neurological'
+                },
+                'tension headache': {
+                    name: 'Tension-Type Headache',
+                    description: 'The most common type of headache, often described as a tight band around the head.',
+                    symptoms: ['headache', 'neck pain', 'shoulder tension', 'mild nausea'],
+                    severity: 'mild-moderate',
+                    category: 'neurological'
+                },
+                'sinusitis': {
+                    name: 'Sinusitis',
+                    description: 'Inflammation of the sinuses causing facial pain, congestion, and headaches.',
+                    symptoms: ['headache', 'facial pain', 'nasal congestion', 'thick nasal discharge', 'fever'],
+                    severity: 'mild-moderate',
+                    category: 'respiratory'
+                },
+                'hypertension': {
+                    name: 'Hypertension (High Blood Pressure)',
+                    description: 'A condition where blood pressure is consistently elevated, often called the "silent killer".',
+                    symptoms: ['headache', 'dizziness', 'chest pain', 'shortness of breath', 'nosebleeds'],
+                    severity: 'moderate-high',
+                    category: 'cardiovascular'
+                },
+                'viral infection': {
+                    name: 'Viral Infection',
+                    description: 'An infection caused by a virus, commonly affecting the respiratory or digestive system.',
+                    symptoms: ['fever', 'fatigue', 'body aches', 'cough', 'sore throat'],
+                    severity: 'mild-moderate',
+                    category: 'infectious'
+                },
+                'bacterial infection': {
+                    name: 'Bacterial Infection',
+                    description: 'An infection caused by bacteria, often requiring antibiotic treatment.',
+                    symptoms: ['fever', 'chills', 'fatigue', 'localized pain', 'swelling'],
+                    severity: 'moderate-high',
+                    category: 'infectious'
+                },
+                'influenza': {
+                    name: 'Influenza (Flu)',
+                    description: 'A contagious respiratory illness caused by influenza viruses.',
+                    symptoms: ['fever', 'cough', 'body aches', 'fatigue', 'headache', 'sore throat'],
+                    severity: 'moderate',
+                    category: 'infectious'
+                },
+                'covid-19': {
+                    name: 'COVID-19',
+                    description: 'A respiratory illness caused by the SARS-CoV-2 virus.',
+                    symptoms: ['fever', 'cough', 'shortness of breath', 'fatigue', 'loss of taste', 'loss of smell'],
+                    severity: 'mild-severe',
+                    category: 'infectious'
+                },
+                'bronchitis': {
+                    name: 'Bronchitis',
+                    description: 'Inflammation of the bronchial tubes, causing cough and mucus production.',
+                    symptoms: ['cough', 'mucus production', 'chest discomfort', 'fatigue', 'mild fever'],
+                    severity: 'mild-moderate',
+                    category: 'respiratory'
+                },
+                'pneumonia': {
+                    name: 'Pneumonia',
+                    description: 'An infection that inflames air sacs in one or both lungs.',
+                    symptoms: ['cough', 'fever', 'chills', 'shortness of breath', 'chest pain'],
+                    severity: 'moderate-high',
+                    category: 'respiratory'
+                },
+                'asthma': {
+                    name: 'Asthma',
+                    description: 'A chronic respiratory condition causing airways to narrow and swell.',
+                    symptoms: ['shortness of breath', 'wheezing', 'cough', 'chest tightness'],
+                    severity: 'mild-severe',
+                    category: 'respiratory'
+                },
+                'copd': {
+                    name: 'COPD (Chronic Obstructive Pulmonary Disease)',
+                    description: 'A group of lung diseases that block airflow and make breathing difficult.',
+                    symptoms: ['shortness of breath', 'chronic cough', 'mucus production', 'wheezing', 'fatigue'],
+                    severity: 'moderate-high',
+                    category: 'respiratory'
+                },
+                'anemia': {
+                    name: 'Anemia',
+                    description: 'A condition where you lack enough healthy red blood cells to carry adequate oxygen.',
+                    symptoms: ['fatigue', 'weakness', 'pale skin', 'shortness of breath', 'dizziness'],
+                    severity: 'mild-moderate',
+                    category: 'hematological'
+                },
+                'thyroid disorders': {
+                    name: 'Thyroid Disorders',
+                    description: 'Conditions affecting the thyroid gland, including hyperthyroidism and hypothyroidism.',
+                    symptoms: ['fatigue', 'weight changes', 'mood changes', 'temperature sensitivity', 'heart palpitations'],
+                    severity: 'mild-moderate',
+                    category: 'endocrine'
+                },
+                'depression': {
+                    name: 'Depression',
+                    description: 'A mental health disorder characterized by persistent sadness and loss of interest.',
+                    symptoms: ['fatigue', 'mood changes', 'sleep problems', 'loss of appetite', 'difficulty concentrating'],
+                    severity: 'mild-severe',
+                    category: 'mental health'
+                },
+                'gastroenteritis': {
+                    name: 'Gastroenteritis',
+                    description: 'Inflammation of the stomach and intestines, often called stomach flu.',
+                    symptoms: ['nausea', 'vomiting', 'diarrhea', 'abdominal pain', 'fever'],
+                    severity: 'mild-moderate',
+                    category: 'gastrointestinal'
+                },
+                'food poisoning': {
+                    name: 'Food Poisoning',
+                    description: 'Illness caused by consuming contaminated food or beverages.',
+                    symptoms: ['nausea', 'vomiting', 'diarrhea', 'abdominal pain', 'fever'],
+                    severity: 'mild-moderate',
+                    category: 'gastrointestinal'
+                },
+                'angina': {
+                    name: 'Angina',
+                    description: 'Chest pain caused by reduced blood flow to the heart muscles.',
+                    symptoms: ['chest pain', 'shortness of breath', 'fatigue', 'dizziness', 'nausea'],
+                    severity: 'moderate-high',
+                    category: 'cardiovascular'
+                },
+                'heart attack': {
+                    name: 'Heart Attack (Myocardial Infarction)',
+                    description: 'A serious condition where blood flow to part of the heart is blocked.',
+                    symptoms: ['chest pain', 'shortness of breath', 'nausea', 'sweating', 'arm pain'],
+                    severity: 'high',
+                    category: 'cardiovascular'
+                },
+                'arthritis': {
+                    name: 'Arthritis',
+                    description: 'Inflammation of one or more joints causing pain and stiffness.',
+                    symptoms: ['joint pain', 'stiffness', 'swelling', 'reduced range of motion'],
+                    severity: 'mild-moderate',
+                    category: 'musculoskeletal'
+                }
+            },
+            commonSymptoms: [
+                'Headache', 'Fever', 'Cough', 'Fatigue', 'Nausea', 'Dizziness', 'Chest pain',
+                'Shortness of breath', 'Abdominal pain', 'Joint pain', 'Muscle aches', 'Sore throat',
+                'Runny nose', 'Loss of appetite', 'Insomnia', 'Anxiety', 'Depression', 'Skin rash',
+                'Swelling', 'Numbness', 'Back pain', 'Constipation', 'Diarrhea', 'Vomiting',
+                'Weight loss', 'Weight gain', 'Hair loss', 'Memory problems', 'Vision problems',
+                'Hearing problems'
+            ]
+        };
         // Global variables
         let currentTab = 'chat';
         let chatMessages = [];
         let isTyping = false;
-
-        // DOM elements
-        const tabButtons = document.querySelectorAll('.nav-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const messageInput = document.getElementById('messageInput');
-        const sendButton = document.getElementById('sendMessage');
-        const chatMessages_container = document.getElementById('chatMessages');
-        const loadingOverlay = document.getElementById('loadingOverlay');
-
+        let suggestionTimeout = null;
+        let aiAnalysisTimeout = null;
+        let currentSymptoms = [];
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             initializeEventListeners();
@@ -977,83 +1450,82 @@
             initializeForms();
             autoResizeTextarea();
         });
-
         // Event Listeners
         function initializeEventListeners() {
             // Tab navigation
-            tabButtons.forEach(button => {
+            document.querySelectorAll('.nav-btn').forEach(button => {
                 button.addEventListener('click', () => switchTab(button.dataset.tab));
             });
-
             // Chat functionality
-            sendButton.addEventListener('click', sendMessage);
-            messageInput.addEventListener('keypress', (e) => {
+            document.getElementById('sendMessage').addEventListener('click', sendMessage);
+            document.getElementById('messageInput').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault();
                     sendMessage();
                 }
             });
-
             // Quick action buttons
             document.querySelectorAll('.quick-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const message = btn.dataset.message;
-                    if (message === 'Emergency help needed') {
+                    if (btn.dataset.action === 'emergency') {
                         showEmergencyModal();
                     } else {
-                        messageInput.value = message;
+                        const message = btn.dataset.message;
+                        document.getElementById('messageInput').value = message;
                         sendMessage();
                     }
                 });
             });
-
             // Chat actions
             document.getElementById('clearChat').addEventListener('click', clearChat);
             document.getElementById('exportChat').addEventListener('click', exportChat);
             document.getElementById('voiceInput').addEventListener('click', startVoiceInput);
             document.getElementById('attachFile').addEventListener('click', attachFile);
-
-            // Severity range slider
-            const severitySlider = document.getElementById('severity');
-            if (severitySlider) {
-                severitySlider.addEventListener('input', (e) => {
-                    document.getElementById('severityValue').textContent = e.target.value;
-                });
-            }
-
-            // Form submissions
-            const symptomForm = document.getElementById('symptomForm');
-            if (symptomForm) {
-                symptomForm.addEventListener('submit', handleSymptomSubmission);
-            }
-
-            const profileForm = document.getElementById('profileForm');
-            if (profileForm) {
-                profileForm.addEventListener('submit', handleProfileSubmission);
-            }
-
-            // Clear form button
-            document.getElementById('clearForm')?.addEventListener('click', clearSymptomForm);
+            // Symptom form
+            const primarySymptomInput = document.getElementById('primarySymptom');
+            primarySymptomInput.addEventListener('input', handleSymptomInput);
+            primarySymptomInput.addEventListener('focus', handleSymptomFocus);
+            primarySymptomInput.addEventListener('blur', handleSymptomBlur);
+            // Symptom description for AI analysis
+            document.getElementById('symptomDescription').addEventListener('input', triggerAIAnalysis);
+            // Severity slider
+            document.getElementById('severity').addEventListener('input', (e) => {
+                document.getElementById('severityValue').textContent = e.target.value;
+                triggerAIAnalysis();
+            });
+            // Duration selector
+            document.getElementById('duration').addEventListener('change', triggerAIAnalysis);
+            // Form submission
+            document.getElementById('symptomForm').addEventListener('submit', handleSymptomSubmission);
+            document.getElementById('clearForm').addEventListener('click', clearSymptomForm);
+            // Close modals when clicking outside
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.classList.remove('active');
+                }
+            });
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.form-group')) {
+                    hideSuggestions();
+                }
+            });
         }
-
         // Tab Management
         function switchTab(tabName) {
             currentTab = tabName;
-
+                        
             // Update active tab button
-            tabButtons.forEach(btn => {
+            document.querySelectorAll('.nav-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.tab === tabName);
             });
-
             // Update active tab content
-            tabContents.forEach(content => {
+            document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.toggle('active', content.id === tabName);
             });
         }
-
         // Chat Functionality
         function initializeChat() {
-            // Add welcome message to chat history
             chatMessages.push({
                 id: Date.now(),
                 role: 'assistant',
@@ -1061,25 +1533,21 @@
                 timestamp: new Date()
             });
         }
-
         function sendMessage() {
+            const messageInput = document.getElementById('messageInput');
             const message = messageInput.value.trim();
             if (!message || isTyping) return;
-
             // Add user message
             addMessage('user', message);
             messageInput.value = '';
-
             // Show typing indicator
             showTypingIndicator();
-
-            // Simulate AI response (replace with actual AI integration)
+            // Generate AI response
             setTimeout(() => {
                 hideTypingIndicator();
                 generateAIResponse(message);
             }, 1500 + Math.random() * 2000);
         }
-
         function addMessage(role, content, isTyping = false) {
             const messageId = Date.now() + Math.random();
             const message = {
@@ -1089,50 +1557,40 @@
                 timestamp: new Date(),
                 isTyping: isTyping
             };
-
             if (!isTyping) {
                 chatMessages.push(message);
             }
-
             const messageElement = createMessageElement(message);
-            chatMessages_container.appendChild(messageElement);
+            document.getElementById('chatMessages').appendChild(messageElement);
             scrollToBottom();
             return messageElement;
         }
-
         function createMessageElement(message) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${message.role}-message`;
             messageDiv.dataset.messageId = message.id;
-
             const avatarDiv = document.createElement('div');
             avatarDiv.className = 'message-avatar';
             avatarDiv.innerHTML = message.role === 'assistant' ? '<i class="fas fa-robot"></i>' : '<i class="fas fa-user"></i>';
-
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
-
             const textDiv = document.createElement('div');
             textDiv.className = 'message-text';
+                        
             if (message.isTyping) {
-                textDiv.innerHTML = '<i class="fas fa-ellipsis-h"></i> Thinking...';
-                textDiv.classList.add('typing');
+                textDiv.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
             } else {
                 textDiv.textContent = message.content;
             }
-
             const timeDiv = document.createElement('div');
             timeDiv.className = 'message-time';
             timeDiv.textContent = message.isTyping ? 'Now' : formatTime(message.timestamp);
-
             contentDiv.appendChild(textDiv);
             contentDiv.appendChild(timeDiv);
             messageDiv.appendChild(avatarDiv);
             messageDiv.appendChild(contentDiv);
-
             return messageDiv;
         }
-
         function showTypingIndicator() {
             isTyping = true;
             const typingMessage = {
@@ -1142,12 +1600,10 @@
                 timestamp: new Date(),
                 isTyping: true
             };
-
             const typingElement = createMessageElement(typingMessage);
-            chatMessages_container.appendChild(typingElement);
+            document.getElementById('chatMessages').appendChild(typingElement);
             scrollToBottom();
         }
-
         function hideTypingIndicator() {
             isTyping = false;
             const typingElement = document.querySelector('[data-message-id="typing"]');
@@ -1155,64 +1611,521 @@
                 typingElement.remove();
             }
         }
-
         function generateAIResponse(userMessage) {
-            // Enhanced AI response generator with medical context
-            const responses = {
-                'headache': "I understand you're experiencing a headache. Can you tell me more about it? When did it start, how severe is it on a scale of 1-10, and are there any other symptoms like nausea, sensitivity to light, or fever? This information will help me provide better guidance.",
-                'fever': "A fever can be concerning. What's your current temperature? Are you experiencing any other symptoms like chills, body aches, or fatigue? It's important to stay hydrated and rest. If your fever is above 103°F (39.4°C) or persists, consider seeking medical attention.",
-                'tired': "Fatigue can have many causes. How long have you been feeling tired? Are you getting enough sleep (7-9 hours per night)? Have there been any changes in your diet, exercise routine, or stress levels recently? Sometimes fatigue can indicate underlying conditions that may need attention.",
-                'emergency': "If this is a medical emergency, please call 911 immediately or go to the nearest emergency room. For urgent but non-emergency situations, consider calling your doctor or visiting an urgent care center. Your safety is the top priority.",
-                'cough': "I see you have a cough. Is it a dry cough or are you producing mucus? How long have you had it? Are there any other symptoms like fever, shortness of breath, or chest pain? This information will help determine the best course of action.",
-                'pain': "I'm sorry you're experiencing pain. Can you describe where the pain is located, how severe it is (1-10 scale), and what type of pain it is (sharp, dull, throbbing)? When did it start and does anything make it better or worse?",
-                'default': "Thank you for sharing that information. To provide you with the best assistance, could you please provide more details about your symptoms, including when they started, their severity, and any other relevant information? The more details you can provide, the better I can help you."
-            };
-
-            let response = responses.default;
             const lowerMessage = userMessage.toLowerCase();
-
+            let response = '';
+            // Enhanced AI response generator with medical context
             if (lowerMessage.includes('headache') || lowerMessage.includes('head')) {
-                response = responses.headache;
+                response = "I understand you're experiencing a headache. Can you tell me more about it? When did it start, how severe is it on a scale of 1-10, and are there any other symptoms like nausea, sensitivity to light, or fever? This information will help me provide better guidance.";
             } else if (lowerMessage.includes('fever') || lowerMessage.includes('temperature')) {
-                response = responses.fever;
+                response = "A fever can be concerning. What's your current temperature? Are you experiencing any other symptoms like chills, body aches, or fatigue? It's important to stay hydrated and rest. If your fever is above 103°F (39.4°C) or persists, consider seeking medical attention.";
             } else if (lowerMessage.includes('tired') || lowerMessage.includes('fatigue') || lowerMessage.includes('exhausted')) {
-                response = responses.tired;
+                response = "Fatigue can have many causes. How long have you been feeling tired? Are you getting enough sleep (7-9 hours per night)? Have there been any changes in your diet, exercise routine, or stress levels recently? Sometimes fatigue can indicate underlying conditions that may need attention.";
             } else if (lowerMessage.includes('emergency') || lowerMessage.includes('urgent') || lowerMessage.includes('help')) {
-                response = responses.emergency;
+                response = "If this is a medical emergency, please call 911 immediately or go to the nearest emergency room. For urgent but non-emergency situations, consider calling your doctor or visiting an urgent care center. Your safety is the top priority.";
             } else if (lowerMessage.includes('cough')) {
-                response = responses.cough;
+                response = "I see you have a cough. Is it a dry cough or are you producing mucus? How long have you had it? Are there any other symptoms like fever, shortness of breath, or chest pain? This information will help determine the best course of action.";
             } else if (lowerMessage.includes('pain') || lowerMessage.includes('hurt')) {
-                response = responses.pain;
+                response = "I'm sorry you're experiencing pain. Can you describe where the pain is located, how severe it is (1-10 scale), and what type of pain it is (sharp, dull, throbbing)? When did it start and does anything make it better or worse?";
+            } else {
+                response = "Thank you for sharing that information. To provide you with the best assistance, could you please provide more details about your symptoms, including when they started, their severity, and any other relevant information? The more details you can provide, the better I can help you.";
             }
-
             // Add medical disclaimer for health-related queries
-            if (lowerMessage.includes('pain') || lowerMessage.includes('sick') || lowerMessage.includes('symptoms') || 
-                lowerMessage.includes('fever') || lowerMessage.includes('headache') || lowerMessage.includes('cough')) {
+            if (lowerMessage.includes('pain') || lowerMessage.includes('sick') || lowerMessage.includes('symptoms') ||
+                 lowerMessage.includes('fever') || lowerMessage.includes('headache') || lowerMessage.includes('cough')) {
                 response += "\n\n⚠️ Medical Disclaimer: This AI assistant provides general information only and cannot replace professional medical advice, diagnosis, or treatment. If your symptoms are severe, persistent, or concerning, please consult with a qualified healthcare professional immediately.";
             }
-
             addMessage('assistant', response);
         }
+        // AI Disease Analysis Functions
+        function triggerAIAnalysis() {
+            if (aiAnalysisTimeout) {
+                clearTimeout(aiAnalysisTimeout);
+            }
+            aiAnalysisTimeout = setTimeout(() => {
+                updateAIAnalysis();
+            }, 1000);
+        }
+        function updateAIAnalysis() {
+            const primarySymptom = document.getElementById('primarySymptom').value.trim();
+            const description = document.getElementById('symptomDescription').value.trim();
+            const severity = document.getElementById('severity').value;
+            const duration = document.getElementById('duration').value;
+            const additionalSymptoms = Array.from(document.querySelectorAll('input[name="additionalSymptoms"]:checked')).map(cb => cb.value);
+            // Update current symptoms array
+            currentSymptoms = [primarySymptom, ...additionalSymptoms].filter(s => s && s.trim());
+            const aiStatus = document.getElementById('aiStatus');
+            const aiStatusText = document.getElementById('aiStatusText');
+            const diseaseSuggestions = document.getElementById('diseaseSuggestions');
+            if (currentSymptoms.length === 0 && !description) {
+                // Reset to idle state
+                aiStatus.className = 'ai-status idle';
+                aiStatusText.textContent = 'Waiting for symptoms...';
+                diseaseSuggestions.innerHTML = `
+                    <div class="no-suggestions">
+                        <i class="fas fa-stethoscope"></i>
+                        <p>Start entering your symptoms to see AI-powered disease suggestions and analysis.</p>
+                    </div>
+                `;
+                return;
+            }
+            // Show analyzing state
+            aiStatus.className = 'ai-status analyzing';
+            aiStatusText.textContent = 'Analyzing symptoms...';
+            // Generate disease suggestions
+            setTimeout(() => {
+                const suggestions = generateDiseaseSuggestions(currentSymptoms, severity, duration, description);
+                displayDiseaseSuggestions(suggestions);
+                
+                aiStatus.className = 'ai-status';
+                aiStatusText.textContent = `Analysis complete - ${suggestions.length} conditions found`;
+            }, 1500);
+        }
+        function generateDiseaseSuggestions(symptoms, severity, duration, description) {
+            const suggestions = [];
+            const lowerSymptoms = symptoms.map(s => s.toLowerCase());
+            // Analyze each disease in the knowledge base
+            Object.keys(medicalKnowledgeBase.diseases).forEach(diseaseKey => {
+                const disease = medicalKnowledgeBase.diseases[diseaseKey];
+                const matchingSymptoms = [];
+                let matchScore = 0;
+                // Check for symptom matches
+                disease.symptoms.forEach(diseaseSymptom => {
+                    lowerSymptoms.forEach(userSymptom => {
+                        if (userSymptom.includes(diseaseSymptom.toLowerCase()) || 
+                            diseaseSymptom.toLowerCase().includes(userSymptom)) {
+                            matchingSymptoms.push(diseaseSymptom);
+                            matchScore += 1;
+                        }
+                    });
+                });
+                // Check description for additional context
+                if (description) {
+                    const lowerDescription = description.toLowerCase();
+                    disease.symptoms.forEach(symptom => {
+                        if (lowerDescription.includes(symptom.toLowerCase())) {
+                            if (!matchingSymptoms.includes(symptom)) {
+                                matchingSymptoms.push(symptom);
+                                matchScore += 0.5;
+                            }
+                        }
+                    });
+                }
+                // Calculate probability based on matches and severity
+                if (matchScore > 0) {
+                    let probability = (matchScore / disease.symptoms.length) * 100;
+                    
+                    // Adjust probability based on severity
+                    if (severity && disease.severity) {
+                        const severityNum = parseInt(severity);
+                        if (disease.severity.includes('high') && severityNum >= 7) {
+                            probability += 15;
+                        } else if (disease.severity.includes('moderate') && severityNum >= 4 && severityNum <= 7) {
+                            probability += 10;
+                        } else if (disease.severity.includes('mild') && severityNum <= 4) {
+                            probability += 10;
+                        }
+                    }
+                    // Cap probability at 95%
+                    probability = Math.min(probability, 95);
+                    
+                    if (probability >= 20) { // Only show diseases with reasonable probability
+                        suggestions.push({
+                            ...disease,
+                            key: diseaseKey,
+                            matchingSymptoms: matchingSymptoms,
+                            probability: Math.round(probability)
+                        });
+                    }
+                }
+            });
+            // Sort by probability (highest first)
+            suggestions.sort((a, b) => b.probability - a.probability);
+            return suggestions.slice(0, 8); // Limit to top 8 suggestions
+        }
+        function displayDiseaseSuggestions(suggestions) {
+            const container = document.getElementById('diseaseSuggestions');
+            
+            if (suggestions.length === 0) {
+                container.innerHTML = `
+                    <div class="no-suggestions">
+                        <i class="fas fa-search"></i>
+                        <p>No matching conditions found. Try adding more specific symptoms or details.</p>
+                    </div>
+                `;
+                return;
+            }
+            // Group suggestions by probability
+            const highProbability = suggestions.filter(s => s.probability >= 70);
+            const moderateProbability = suggestions.filter(s => s.probability >= 40 && s.probability < 70);
+            const lowProbability = suggestions.filter(s => s.probability < 40);
+            let html = '';
+            // High probability conditions
+            if (highProbability.length > 0) {
+                html += `
+                    <div class="disease-category high-probability">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-exclamation"></i>
+                            </div>
+                            High Probability
+                        </div>
+                        ${highProbability.map(disease => createDiseaseHTML(disease)).join('')}
+                    </div>
+                `;
+            }
+            // Moderate probability conditions
+            if (moderateProbability.length > 0) {
+                html += `
+                    <div class="disease-category moderate-probability">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-info"></i>
+                            </div>
+                            Moderate Probability
+                        </div>
+                        ${moderateProbability.map(disease => createDiseaseHTML(disease)).join('')}
+                    </div>
+                `;
+            }
+            // Low probability conditions
+            if (lowProbability.length > 0) {
+                html += `
+                    <div class="disease-category low-probability">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            Consider Also
+                        </div>
+                        ${lowProbability.map(disease => createDiseaseHTML(disease)).join('')}
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+        function createDiseaseHTML(disease) {
+            const probabilityClass = disease.probability >= 70 ? 'high-probability' : 
+                                   disease.probability >= 40 ? 'moderate-probability' : 'low-probability';
+            
+            return `
+                <div class="disease-item ${probabilityClass}" onclick="showDiseaseDetails('${disease.key}')">
+                    <div class="disease-name">
+                        ${disease.name}
+                        <span class="probability-badge">${disease.probability}%</span>
+                    </div>
+                    <div class="disease-description">
+                        ${disease.description}
+                    </div>
+                    <div class="matching-symptoms">
+                        ${disease.matchingSymptoms.map(symptom => 
+                            `<span class="symptom-tag">${symptom}</span>`
+                        ).join('')}
+                    </div>
+                </div>
+            `;
+        }
+        function showDiseaseDetails(diseaseKey) {
+            const disease = medicalKnowledgeBase.diseases[diseaseKey];
+            if (!disease) return;
+            
+            // Switch to chat and provide detailed information
+            switchTab('chat');
+            
+            const detailedInfo = `
+Disease Information: ${disease.name}
 
+Description: ${disease.description}
+
+Common Symptoms:
+${disease.symptoms.map(symptom => `• ${symptom.charAt(0).toUpperCase() + symptom.slice(1)}`).join('\n')}
+
+Category: ${disease.category.charAt(0).toUpperCase() + disease.category.slice(1)}
+Severity Range: ${disease.severity}
+
+⚠️ Important: This information is for educational purposes only. Please consult with a healthcare professional for proper diagnosis and treatment. If you're experiencing severe symptoms, seek immediate medical attention.
+            `.trim();
+            
+            addMessage('user', `Tell me more about ${disease.name}`);
+            addMessage('assistant', detailedInfo);
+        }
+        // Symptom Suggestions
+        function handleSymptomInput(e) {
+            const input = e.target.value.trim();
+                        
+            if (suggestionTimeout) {
+                clearTimeout(suggestionTimeout);
+            }
+            if (input.length < 2) {
+                hideSuggestions();
+                triggerAIAnalysis();
+                return;
+            }
+            suggestionTimeout = setTimeout(() => {
+                showSuggestions(input);
+                triggerAIAnalysis();
+            }, 300);
+        }
+        function handleSymptomFocus(e) {
+            const input = e.target.value.trim();
+            if (input.length >= 2) {
+                showSuggestions(input);
+            }
+        }
+        function handleSymptomBlur(e) {
+            // Delay hiding to allow clicking on suggestions
+            setTimeout(() => {
+                if (!document.querySelector('.suggestions-container:hover')) {
+                    hideSuggestions();
+                }
+            }, 200);
+        }
+        function showSuggestions(input) {
+            const container = document.getElementById('suggestionsContainer');
+            const commonSuggestions = getCommonSuggestions(input);
+            const aiSuggestions = getAISuggestions(input);
+            if (commonSuggestions.length === 0 && aiSuggestions.length === 0) {
+                hideSuggestions();
+                return;
+            }
+            let html = '';
+            // Common suggestions
+            if (commonSuggestions.length > 0) {
+                html += `
+                    <div class="suggestion-section">
+                        <div class="suggestion-header">
+                            <i class="fas fa-list"></i>
+                            Common Symptoms
+                        </div>
+                        ${commonSuggestions.map(suggestion => `
+                            <div class="suggestion-item common-suggestion" onclick="selectSuggestion('${suggestion.name}')">
+                                <div class="suggestion-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div class="suggestion-text">
+                                    <div class="suggestion-name">${suggestion.name}</div>
+                                    ${suggestion.description ? `<div class="suggestion-description">${suggestion.description}</div>` : ''}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            // AI suggestions
+            if (aiSuggestions.length > 0) {
+                html += `
+                    <div class="suggestion-section">
+                        <div class="suggestion-header">
+                            <i class="fas fa-brain"></i>
+                            AI Suggestions
+                        </div>
+                        ${aiSuggestions.map(suggestion => `
+                            <div class="suggestion-item ai-suggestion" onclick="selectSuggestion('${suggestion.name}')">
+                                <div class="suggestion-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="suggestion-text">
+                                    <div class="suggestion-name">${suggestion.name}</div>
+                                    ${suggestion.description ? `<div class="suggestion-description">${suggestion.description}</div>` : ''}
+                                </div>
+                                <div class="ai-badge">AI</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+            container.style.display = 'block';
+        }
+        function getCommonSuggestions(input) {
+            const suggestions = [];
+            const lowerInput = input.toLowerCase();
+            medicalKnowledgeBase.commonSymptoms.forEach(symptom => {
+                if (symptom.toLowerCase().includes(lowerInput)) {
+                    suggestions.push({
+                        name: symptom,
+                        description: `Common medical symptom`
+                    });
+                }
+            });
+            return suggestions.slice(0, 5);
+        }
+        function getAISuggestions(input) {
+            const suggestions = [];
+            const lowerInput = input.toLowerCase();
+            // Find related symptoms and conditions based on input
+            Object.keys(medicalKnowledgeBase.symptoms).forEach(symptom => {
+                if (symptom.includes(lowerInput) || lowerInput.includes(symptom)) {
+                    const data = medicalKnowledgeBase.symptoms[symptom];
+                                        
+                    // Add related symptoms
+                    data.related.forEach(related => {
+                        if (!suggestions.find(s => s.name.toLowerCase() === related.toLowerCase())) {
+                            suggestions.push({
+                                name: related.charAt(0).toUpperCase() + related.slice(1),
+                                description: `Related to ${symptom}`
+                            });
+                        }
+                    });
+                    // Add associated symptoms
+                    data.associated.slice(0, 2).forEach(associated => {
+                        if (!suggestions.find(s => s.name.toLowerCase() === associated.toLowerCase())) {
+                            suggestions.push({
+                                name: associated.charAt(0).toUpperCase() + associated.slice(1),
+                                description: `Often occurs with ${symptom}`
+                            });
+                        }
+                    });
+                }
+            });
+            return suggestions.slice(0, 3);
+        }
+        function selectSuggestion(symptom) {
+            document.getElementById('primarySymptom').value = symptom;
+            hideSuggestions();
+            triggerAIAnalysis();
+        }
+        function hideSuggestions() {
+            const container = document.getElementById('suggestionsContainer');
+            container.style.display = 'none';
+        }
+        // Form Handling
+        function initializeForms() {
+            // Populate additional symptoms
+            const additionalSymptomsContainer = document.getElementById('additionalSymptoms');
+            medicalKnowledgeBase.commonSymptoms.forEach(symptom => {
+                const checkboxItem = document.createElement('div');
+                checkboxItem.className = 'checkbox-item';
+                checkboxItem.innerHTML = `
+                    <input type="checkbox" id="symptom_${symptom.replace(/\s+/g, '_')}" name="additionalSymptoms" value="${symptom}">
+                    <label for="symptom_${symptom.replace(/\s+/g, '_')}">${symptom}</label>
+                `;
+                
+                // Add event listener for AI analysis
+                const checkbox = checkboxItem.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', triggerAIAnalysis);
+                
+                additionalSymptomsContainer.appendChild(checkboxItem);
+            });
+        }
+        function handleSymptomSubmission(e) {
+            e.preventDefault();
+            showLoading();
+            // Collect form data
+            const formData = new FormData(e.target);
+            const symptomData = {
+                primarySymptom: formData.get('primarySymptom'),
+                description: formData.get('symptomDescription'),
+                severity: formData.get('severity'),
+                duration: formData.get('duration'),
+                additionalSymptoms: Array.from(document.querySelectorAll('input[name="additionalSymptoms"]:checked')).map(cb => cb.value)
+            };
+            // Simulate processing time
+            setTimeout(() => {
+                hideLoading();
+                                
+                // Generate analysis based on symptoms
+                const analysis = generateSymptomAnalysis(symptomData);
+                                
+                // Switch to chat tab and add the analysis
+                switchTab('chat');
+                addMessage('user', `Symptom Analysis Request: ${symptomData.primarySymptom} - ${symptomData.description}`);
+                addMessage('assistant', analysis);
+                                
+                // Show success message
+                showNotification('Symptom analysis completed. Check the chat for results.', 'success');
+            }, 2000);
+        }
+        function generateSymptomAnalysis(data) {
+            let analysis = `Based on your symptom report:\n\n`;
+            analysis += `Primary Symptom: ${data.primarySymptom}\n`;
+            analysis += `Severity: ${data.severity}/10\n`;
+            analysis += `Duration: ${data.duration || 'Not specified'}\n\n`;
+            if (data.additionalSymptoms.length > 0) {
+                analysis += `Additional symptoms: ${data.additionalSymptoms.join(', ')}\n\n`;
+            }
+            // Add AI-powered insights based on symptom combinations
+            const insights = generateAIInsights(data);
+            if (insights) {
+                analysis += `AI Analysis:\n${insights}\n\n`;
+            }
+            // Add general advice based on severity
+            if (parseInt(data.severity) >= 8) {
+                analysis += `⚠️ Given the high severity level, I recommend seeking immediate medical attention.\n\n`;
+            } else if (parseInt(data.severity) >= 6) {
+                analysis += `⚠️ Consider consulting with a healthcare provider, especially if symptoms persist or worsen.\n\n`;
+            }
+            analysis += `General recommendations:\n`;
+            analysis += `• Monitor your symptoms closely\n`;
+            analysis += `• Stay hydrated and get adequate rest\n`;
+            analysis += `• Keep a symptom diary\n`;
+            analysis += `• Seek professional medical advice if symptoms worsen\n\n`;
+            analysis += `⚠️ Important: This analysis is for informational purposes only and does not replace professional medical diagnosis or treatment. Please consult with a qualified healthcare provider for proper medical evaluation.`;
+            return analysis;
+        }
+        function generateAIInsights(data) {
+            const primarySymptom = data.primarySymptom.toLowerCase();
+            const additionalSymptoms = data.additionalSymptoms.map(s => s.toLowerCase());
+                        
+            // Check for symptom patterns in knowledge base
+            if (medicalKnowledgeBase.symptoms[primarySymptom]) {
+                const symptomData = medicalKnowledgeBase.symptoms[primarySymptom];
+                let insights = '';
+                // Check for associated symptoms
+                const foundAssociated = additionalSymptoms.filter(symptom =>
+                     symptomData.associated.some(assoc => assoc.toLowerCase().includes(symptom) || symptom.includes(assoc.toLowerCase()))
+                );
+                if (foundAssociated.length > 0) {
+                    insights += `The combination of ${data.primarySymptom.toLowerCase()} with ${foundAssociated.join(', ')} suggests several possible conditions including: ${symptomData.conditions.slice(0, 3).join(', ')}.\n\n`;
+                }
+                // Severity-based insights
+                if (parseInt(data.severity) >= 7) {
+                    insights += `The high severity level (${data.severity}/10) indicates this requires prompt medical evaluation.\n\n`;
+                }
+                return insights;
+            }
+            return null;
+        }
+        function clearSymptomForm() {
+            if (confirm('Are you sure you want to clear all form data?')) {
+                document.getElementById('symptomForm').reset();
+                document.getElementById('severityValue').textContent = '5';
+                hideSuggestions();
+                
+                // Reset AI analysis
+                currentSymptoms = [];
+                const aiStatus = document.getElementById('aiStatus');
+                const aiStatusText = document.getElementById('aiStatusText');
+                const diseaseSuggestions = document.getElementById('diseaseSuggestions');
+                
+                aiStatus.className = 'ai-status idle';
+                aiStatusText.textContent = 'Waiting for symptoms...';
+                diseaseSuggestions.innerHTML = `
+                    <div class="no-suggestions">
+                        <i class="fas fa-stethoscope"></i>
+                        <p>Start entering your symptoms to see AI-powered disease suggestions and analysis.</p>
+                    </div>
+                `;
+            }
+        }
+        // Utility Functions
         function clearChat() {
             if (confirm('Are you sure you want to clear the chat history?')) {
                 chatMessages = [];
-                chatMessages_container.innerHTML = '';
+                document.getElementById('chatMessages').innerHTML = '';
                 initializeChat();
-                
+                                
                 // Re-add the welcome message to the UI
                 const welcomeMessage = chatMessages[0];
                 const welcomeElement = createMessageElement(welcomeMessage);
-                chatMessages_container.appendChild(welcomeElement);
+                document.getElementById('chatMessages').appendChild(welcomeElement);
             }
         }
-
         function exportChat() {
             const chatData = {
                 timestamp: new Date().toISOString(),
                 messages: chatMessages
             };
-
             const dataStr = JSON.stringify(chatData, null, 2);
             const dataBlob = new Blob([dataStr], {type: 'application/json'});
             const link = document.createElement('a');
@@ -1220,40 +2133,32 @@
             link.download = `medical-chat-${new Date().toISOString().split('T')[0]}.json`;
             link.click();
         }
-
         function startVoiceInput() {
             if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
                 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
                 const recognition = new SpeechRecognition();
-                
                 recognition.continuous = false;
                 recognition.interimResults = false;
                 recognition.lang = 'en-US';
-
                 recognition.onstart = function() {
                     document.getElementById('voiceInput').innerHTML = '<i class="fas fa-microphone-slash"></i> Listening...';
                 };
-
                 recognition.onresult = function(event) {
                     const transcript = event.results[0][0].transcript;
-                    messageInput.value = transcript;
+                    document.getElementById('messageInput').value = transcript;
                 };
-
                 recognition.onend = function() {
                     document.getElementById('voiceInput').innerHTML = '<i class="fas fa-microphone"></i> Voice Input';
                 };
-
                 recognition.onerror = function(event) {
                     console.error('Speech recognition error:', event.error);
-                    alert('Voice input failed. Please try again or type your message.');
+                    showNotification('Voice input failed. Please try again or type your message.', 'error');
                 };
-
                 recognition.start();
             } else {
-                alert('Voice input is not supported in your browser.');
+                showNotification('Voice input is not supported in your browser.', 'error');
             }
         }
-
         function attachFile() {
             const input = document.createElement('input');
             input.type = 'file';
@@ -1268,143 +2173,23 @@
             };
             input.click();
         }
-
         function scrollToBottom() {
-            chatMessages_container.scrollTop = chatMessages_container.scrollHeight;
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
-
         function formatTime(date) {
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         }
-
-        // Form Handling
-        function initializeForms() {
-            updateFormValidation();
-        }
-
-        function handleSymptomSubmission(e) {
-            e.preventDefault();
-            showLoading();
-
-            // Collect form data
-            const formData = new FormData(e.target);
-            const symptomData = {
-                primarySymptom: formData.get('primarySymptom') || document.getElementById('primarySymptom').value,
-                description: document.getElementById('symptomDescription').value,
-                severity: document.getElementById('severity').value,
-                duration: document.getElementById('duration').value,
-                additionalSymptoms: Array.from(document.querySelectorAll('#symptoms input[type="checkbox"]:checked')).map(cb => cb.value)
-            };
-
-            // Simulate processing time
-            setTimeout(() => {
-                hideLoading();
-                
-                // Generate analysis based on symptoms
-                const analysis = generateSymptomAnalysis(symptomData);
-                
-                // Switch to chat tab and add the analysis
-                switchTab('chat');
-                addMessage('user', `Symptom Analysis Request: ${symptomData.primarySymptom} - ${symptomData.description}`);
-                addMessage('assistant', analysis);
-                
-                // Show success message
-                showNotification('Symptom analysis completed. Check the chat for results.', 'success');
-            }, 2000);
-        }
-
-        function generateSymptomAnalysis(data) {
-            let analysis = `Based on your symptom report:\n\n`;
-            analysis += `Primary Symptom: ${data.primarySymptom}\n`;
-            analysis += `Severity: ${data.severity}/10\n`;
-            analysis += `Duration: ${data.duration}\n\n`;
-
-            if (data.additionalSymptoms.length > 0) {
-                analysis += `Additional symptoms: ${data.additionalSymptoms.join(', ')}\n\n`;
-            }
-
-            // Add general advice based on severity
-            if (parseInt(data.severity) >= 8) {
-                analysis += `⚠️ Given the high severity level, I recommend seeking immediate medical attention.\n\n`;
-            } else if (parseInt(data.severity) >= 6) {
-                analysis += `⚠️ Consider consulting with a healthcare provider, especially if symptoms persist or worsen.\n\n`;
-            }
-
-            analysis += `General recommendations:\n`;
-            analysis += `• Monitor your symptoms closely\n`;
-            analysis += `• Stay hydrated and get adequate rest\n`;
-            analysis += `• Keep a symptom diary\n`;
-            analysis += `• Seek professional medical advice if symptoms worsen\n\n`;
-            analysis += `⚠️ Important: This analysis is for informational purposes only and does not replace professional medical diagnosis or treatment. Please consult with a qualified healthcare provider for proper medical evaluation.`;
-
-            return analysis;
-        }
-
-        function handleProfileSubmission(e) {
-            e.preventDefault();
-            showLoading();
-
-            setTimeout(() => {
-                hideLoading();
-                showNotification('Medical profile saved successfully.', 'success');
-            }, 1500);
-        }
-
-        function clearSymptomForm() {
-            if (confirm('Are you sure you want to clear all form data?')) {
-                document.getElementById('symptomForm').reset();
-                document.getElementById('severityValue').textContent = '5';
-            }
-        }
-
-        function updateFormValidation() {
-            // Add real-time form validation
-            const requiredFields = document.querySelectorAll('input[required], textarea[required], select[required]');
-            requiredFields.forEach(field => {
-                field.addEventListener('blur', validateField);
-                field.addEventListener('input', clearFieldError);
-            });
-        }
-
-        function validateField(e) {
-            const field = e.target;
-            const value = field.value.trim();
-            
-            if (!value) {
-                showFieldError(field, 'This field is required');
-            } else {
-                clearFieldError(field);
-            }
-        }
-
-        function showFieldError(field, message) {
-            clearFieldError(field);
-            field.classList.add('error');
-            
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'field-error';
-            errorDiv.textContent = message;
-            field.parentNode.appendChild(errorDiv);
-        }
-
-        function clearFieldError(field) {
-            field.classList.remove('error');
-            const existingError = field.parentNode.querySelector('.field-error');
-            if (existingError) {
-                existingError.remove();
-            }
-        }
-
-        // Utility Functions
         function showLoading() {
-            loadingOverlay.classList.add('active');
+            document.getElementById('loadingOverlay').classList.add('active');
         }
-
         function hideLoading() {
-            loadingOverlay.classList.remove('active');
+            document.getElementById('loadingOverlay').classList.remove('active');
         }
-
         function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notification => notification.remove());
             // Create notification element
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -1417,9 +2202,11 @@
                     <i class="fas fa-times"></i>
                 </button>
             `;
-
+                        
             document.body.appendChild(notification);
-
+                        
+            // Show notification with animation
+            setTimeout(() => notification.classList.add('show'), 100);
             // Auto remove after 5 seconds
             setTimeout(() => {
                 if (notification.parentElement) {
@@ -1427,59 +2214,47 @@
                 }
             }, 5000);
         }
-
         function showEmergencyModal() {
-            const modal = document.getElementById('emergencyModal');
-            modal.classList.add('active');
+            document.getElementById('emergencyModal').classList.add('active');
         }
-
         function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('active');
+            document.getElementById(modalId).classList.remove('active');
         }
-
         // Auto-resize textarea
         function autoResizeTextarea() {
+            const messageInput = document.getElementById('messageInput');
             messageInput.addEventListener('input', function() {
                 this.style.height = 'auto';
                 this.style.height = Math.min(this.scrollHeight, 120) + 'px';
             });
         }
-
-        // Close modals when clicking outside
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('active');
-            }
-        });
-
         // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
             // Ctrl/Cmd + K to focus on message input
             if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
                 e.preventDefault();
-                messageInput.focus();
+                document.getElementById('messageInput').focus();
             }
-
-            // Escape to close modals
+            // Escape to close modals and suggestions
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal.active').forEach(modal => {
                     modal.classList.remove('active');
                 });
+                hideSuggestions();
             }
         });
-
         // Initialize tooltips and other UI enhancements
         document.addEventListener('DOMContentLoaded', function() {
             // Add loading states to buttons
             document.querySelectorAll('button[type="submit"]').forEach(button => {
                 button.addEventListener('click', function() {
                     if (this.form && this.form.checkValidity()) {
+                        const originalText = this.innerHTML;
                         this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
                         this.disabled = true;
-                        
+                                                
                         setTimeout(() => {
-                            this.innerHTML = this.dataset.originalText || 'Submit';
+                            this.innerHTML = originalText;
                             this.disabled = false;
                         }, 3000);
                     }
